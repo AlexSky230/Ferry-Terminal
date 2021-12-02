@@ -1,1 +1,15 @@
-<p>large-ferry works!</p>
+<section class="ferry-card">
+  <div class="d-flex justify-content-between w-100">
+    <h5>Large Ferry Cargo</h5>
+    <div>
+      Shipped:
+      <strong class="action-color">{{largeFerryCounter$ | async}}</strong>
+    </div>
+  </div>
+
+  <div *ngIf="largeFerryLoad$ | async as largeFerryLoad">
+    <div *ngIf="largeFerryLoad.length">
+      {{largeFerryLoad | json}}
+    </div>
+  </div>
+</section>

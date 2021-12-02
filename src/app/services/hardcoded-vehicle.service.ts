@@ -6,7 +6,9 @@ import {
   VehicleType
 } from '../interfaces/ivehicle.provider';
 
-@Injectable()
+@Injectable({
+  providedIn: 'root'
+})
 export class HardcodedVehicleService implements IVehicleProvider {
   GetVehicle(): VehicleSummary {
     const randomNumber = Math.floor(Math.random() * 4) + 1;

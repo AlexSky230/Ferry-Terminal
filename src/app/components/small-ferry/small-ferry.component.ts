@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import {VehicleSummary} from '../../interfaces/ivehicle.provider';
+import {Observable} from 'rxjs';
+import {FerryLogicService} from '../../services/ferry-logic.service';
 
 @Component({
   selector: 'app-small-ferry',
@@ -7,9 +10,14 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SmallFerryComponent implements OnInit {
 
-  constructor() { }
+  public smallFerryLoad$: Observable<VehicleSummary[]>;
+  public smallFerryCounter$: Observable<number>;
+
+  constructor(private ferryLogicService: FerryLogicService) { }
 
   ngOnInit(): void {
+    this.smallFerryLoad$ = this.ferryLogicService.smallFerryLoad$;
+    this.smallFerryCounter$ = this.ferryLogicService.smallFerryCounter$;
   }
 
 }

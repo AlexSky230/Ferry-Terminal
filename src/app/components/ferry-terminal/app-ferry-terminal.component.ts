@@ -1,5 +1,6 @@
-import {Component, Inject} from '@angular/core';
-import {IVehicleProvider, VEHICLE_PROVIDER, VehicleSummary} from 'src/app/interfaces/ivehicle.provider';
+import {Component} from '@angular/core';
+import {FerryLogicService} from '../../services/ferry-logic.service';
+import {HardcodedVehicleService} from '../../services/hardcoded-vehicle.service';
 
 @Component({
   selector: 'app-ferry-terminal',
@@ -7,15 +8,14 @@ import {IVehicleProvider, VEHICLE_PROVIDER, VehicleSummary} from 'src/app/interf
   styleUrls: ['./app-ferry-terminal.component.scss']
 })
 export class AppFerryTerminalComponent {
-  currentVehicle: VehicleSummary;
 
-  constructor(
-    @Inject(VEHICLE_PROVIDER) private vehicleProvider: IVehicleProvider
-  ) {
+  constructor(private hardcodedVehicleService: HardcodedVehicleService,
+              private ferryLogicService: FerryLogicService) {
   }
 
-  public getVehicle() {
-    this.currentVehicle = this.vehicleProvider.GetVehicle();
-    console.log(this.currentVehicle);
+  public getVehicle(): void {
+    this.ferryLogicService.loadVehicle(this.hardcodedVehicleService.GetVehicle());
   }
+
+
 }

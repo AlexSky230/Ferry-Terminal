@@ -1,1 +1,6 @@
-<p>finance-monitoring works!</p>
+<h5>Profit</h5>
+
+<div>Total Profit: {{(profit$ | async) | currency}}</div>
+<div>Workers Profit: {{workersProfit | currency}}</div>
+
+<button mat-raised-button color="accent" (click)="reset()" class="mt-3">Reset Profit Data</button>
