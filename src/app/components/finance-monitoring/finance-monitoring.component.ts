@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Observable} from 'rxjs';
 import {FinanceService} from '../../services/finance.service';
 import {tap} from 'rxjs/operators';
@@ -13,17 +13,18 @@ export class FinanceMonitoringComponent implements OnInit {
   public workersProfit: number;
   public profit$: Observable<number>;
 
-  constructor(private financeService: FinanceService) { }
+  constructor(private financeService: FinanceService) {
+  }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.setProfit();
   }
 
-  public reset() {
+  public reset(): void {
     this.financeService.reset();
   }
 
-  private setProfit() {
+  private setProfit(): void {
     this.profit$ = this.financeService.profit$.pipe(
       tap((totalProfit: number) => {
         this.workersProfit = totalProfit / 10;

@@ -15,7 +15,7 @@ export class LargeFerryComponent implements OnInit {
 
   constructor(private ferryLogicService: FerryLogicService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.largeFerryLoad$ = this.ferryLogicService.largeFerryLoad$;
     this.largeFerryCounter$ = this.ferryLogicService.largeFerryCounter$;
   }

@@ -1,10 +1,5 @@
-import { Injectable } from '@angular/core';
-import {
-  IVehicleProvider,
-  VehicleSize,
-  VehicleSummary,
-  VehicleType
-} from '../interfaces/ivehicle.provider';
+import {Injectable} from '@angular/core';
+import {IVehicleProvider, VehicleSize, VehicleSummary, VehicleType} from '../interfaces/ivehicle.provider';
 
 @Injectable({
   providedIn: 'root'

@@ -15,7 +15,7 @@ export class SmallFerryComponent implements OnInit {
 
   constructor(private ferryLogicService: FerryLogicService) { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.smallFerryLoad$ = this.ferryLogicService.smallFerryLoad$;
     this.smallFerryCounter$ = this.ferryLogicService.smallFerryCounter$;
   }

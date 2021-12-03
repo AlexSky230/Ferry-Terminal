@@ -7,9 +7,11 @@
     </div>
   </div>
 
-  <div *ngIf="smallFerryLoad$ | async as smallFerryLoad">
-    <div *ngIf="smallFerryLoad.length">
-      {{smallFerryLoad | json}}
+  <div class="ferry-container d-flex justify-content-center">
+    <div *ngIf="(smallFerryLoad$ | async) as load" class="d-flex flex-wrap small-ferry">
+      <ng-container *ngFor="let vehicle of load">
+        <app-vehicle-slot [vehicle]="vehicle"></app-vehicle-slot>
+      </ng-container>
     </div>
   </div>
 </section>

@@ -12,6 +12,7 @@ import {AppFerryTerminalComponent} from './components/ferry-terminal/app-ferry-t
 import {HeaderComponent} from './components/header/header.component';
 import {VEHICLE_PROVIDER} from './interfaces/ivehicle.provider';
 import {HardcodedVehicleService} from './services/hardcoded-vehicle.service';
+import {VehicleSlotComponent} from './components/vehicle-slot/vehicle-slot.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import {HardcodedVehicleService} from './services/hardcoded-vehicle.service';
     LargeFerryComponent,
     FinanceMonitoringComponent,
     AppFerryTerminalComponent,
-    HeaderComponent
+    HeaderComponent,
+    VehicleSlotComponent
   ],
   imports: [
     BrowserModule,

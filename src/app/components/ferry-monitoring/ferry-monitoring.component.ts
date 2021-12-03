@@ -1,15 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component} from '@angular/core';
 
 @Component({
   selector: 'app-ferry-monitoring',
   templateUrl: './ferry-monitoring.component.html',
   styleUrls: ['./ferry-monitoring.component.scss']
 })
-export class FerryMonitoringComponent implements OnInit {
+export class FerryMonitoringComponent {
 
-  constructor() { }
-
-  ngOnInit(): void {
+  constructor() {
   }
-
 }

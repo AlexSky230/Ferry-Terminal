@@ -16,6 +16,4 @@ export class AppFerryTerminalComponent {
   public getVehicle(): void {
     this.ferryLogicService.loadVehicle(this.hardcodedVehicleService.GetVehicle());
   }
-
-
 }

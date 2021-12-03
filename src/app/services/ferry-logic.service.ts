@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {BehaviorSubject} from 'rxjs';
 import {VehicleSize, VehicleSummary} from '../interfaces/ivehicle.provider';
 import {FinanceService} from './finance.service';
+import {AlertService} from './alert.service';
 
 @Injectable({
   providedIn: 'root'
@@ -25,43 +26,51 @@ export class FerryLogicService {
   private readonly smallFerryCapacity = 8;
   private readonly largeFerryCapacity = 6;
 
-  constructor(private financeService: FinanceService) { }
+  constructor(private financeService: FinanceService,
+              private alertService: AlertService) {
+  }
 
   public loadVehicle(vehicle: VehicleSummary): void {
-    console.log('service: ', vehicle);
     if (!vehicle) {
-      // display error
       return;
     }
     this.financeService.addProfit(vehicle.type);
-    switch (vehicle.category) {
-      case VehicleSize.small:
-        this.loadOnSmallFerry(vehicle);
-        break;
-      default:
-        this.loadOnLargeFerry(vehicle);
-    }
+    this.loadOnFerry(vehicle);
   }
 
-  private loadOnLargeFerry(vehicle: VehicleSummary): void {
-    console.log('large: ', vehicle);
-    const ferryLoad = this.largeFerryLoadSource$.getValue();
-    if (ferryLoad.length < this.largeFerryCapacity) {
-      this.largeFerryLoadSource$.next([...ferryLoad, vehicle]);
-    } else {
-      this.largeFerryLoadSource$.next([]);
-      this.largeFerryCounterSource$.next(this.largeFerryCounterSource$.getValue() + 1);
-    }
+  public reset(): void {
+    this.largeFerryLoadSource$.next([]);
+    this.smallFerryLoadSource$.next([]);
+    this.largeFerryCounterSource$.next(0);
+    this.smallFerryCounterSource$.next(0);
   }
 
-  private loadOnSmallFerry(vehicle: VehicleSummary): void {
-    console.log('small: ', vehicle);
-    const ferryLoad = this.smallFerryLoadSource$.getValue();
-    if (ferryLoad.length < this.smallFerryCapacity) {
-      this.smallFerryLoadSource$.next([...ferryLoad, vehicle]);
+  private loadOnFerry(vehicle: VehicleSummary): void {
+    let loadSource$: BehaviorSubject<VehicleSummary[]>;
+    let ferryCapacity: number;
+    let ferryCounterSource$: BehaviorSubject<number>;
+    let size: string;
+
+    if (vehicle.category === VehicleSize.small) {
+      loadSource$ = this.smallFerryLoadSource$;
+      ferryCapacity = this.smallFerryCapacity;
+      ferryCounterSource$ = this.smallFerryCounterSource$;
+      size = 'Small';
     } else {
-      this.smallFerryLoadSource$.next([]);
-      this.smallFerryCounterSource$.next(this.smallFerryCounterSource$.getValue() + 1);
+      loadSource$ = this.largeFerryLoadSource$;
+      ferryCapacity = this.largeFerryCapacity;
+      ferryCounterSource$ = this.largeFerryCounterSource$;
+      size = 'Large';
+    }
+
+    const ferryLoad = loadSource$.getValue();
+
+    if (ferryLoad.length < ferryCapacity) {
+      loadSource$.next([...ferryLoad, vehicle]);
+    } else {
+      loadSource$.next([vehicle]);
+      ferryCounterSource$.next(ferryCounterSource$.getValue() + 1);
+      this.alertService.setMessage(`${size} Ferry left terminal`);
     }
   }
 }
