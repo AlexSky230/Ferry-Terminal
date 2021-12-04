@@ -4,7 +4,8 @@
 </div>
 
 <div class="mt-3">
-  <div>Total Profit: <strong>{{(profit$ | async) | currency}}</strong></div>
-  <div>Workers Profit: <strong>{{workersProfit | currency}}</strong></div>
+  <div>Total Profit: <strong>{{(totalProfit$ | async) | currency}}</strong></div>
+  <div>Terminal Profit: <strong>{{(terminalProfit$ | async) | currency}}</strong></div>
+  <div>Workers Profit: <strong>{{(workerProfit$ | async) | currency}}</strong></div>
 </div>
 
