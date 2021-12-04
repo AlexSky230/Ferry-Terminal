@@ -14,10 +14,10 @@ export class FinanceService {
   public terminalProfit$ = this.totalProfit$.pipe(map((profit: number) => profit - (profit / 10)));
 
   private readonly fees = {
-    [VehicleType.van] : 7.50,
-    [VehicleType.truck] : 7.50,
-    [VehicleType.bus] : 7.50,
-    [VehicleType.car] : 7.50,
+    [VehicleType.car]: 5,
+    [VehicleType.van]: 7.50,
+    [VehicleType.truck]: 10,
+    [VehicleType.bus]: 15,
   };
 
   constructor() {
