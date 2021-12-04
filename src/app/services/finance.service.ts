@@ -13,7 +13,7 @@ export class FinanceService {
   public workerProfit$ = this.totalProfit$.pipe(map((profit: number) => profit / 10));
   public terminalProfit$ = this.totalProfit$.pipe(map((profit: number) => profit - (profit / 10)));
 
-  private readonly profits = {
+  private readonly fees = {
     [VehicleType.van] : 7.50,
     [VehicleType.truck] : 7.50,
     [VehicleType.bus] : 7.50,
@@ -24,7 +24,7 @@ export class FinanceService {
   }
 
   public addProfit(type: VehicleType): void {
-    const fee = this.profits[type];
+    const fee = this.fees[type];
     this.profitSource$.next(this.profitSource$.getValue() + fee);
   }
 
