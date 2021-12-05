@@ -1,1 +1,9 @@
+.f-container {
+  margin-top: 1rem;
+}
 
+@media (max-width:992px) {
+  .f-container {
+    margin-top: 0.5rem;
+  }
+}

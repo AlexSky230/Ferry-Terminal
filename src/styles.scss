@@ -65,6 +65,19 @@ h1 {
   }
 }
 
+@media (max-width:992px) {
+  .ferry-container {
+    .small-ferry {
+      width: 302px;
+      height: 75px;
+    }
+    .large-ferry {
+      width: 232px;
+      height: 75px;
+    }
+  }
+}
+
 
 
 

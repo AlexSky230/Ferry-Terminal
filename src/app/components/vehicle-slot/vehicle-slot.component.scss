@@ -7,3 +7,10 @@
     object-fit: contain;
   }
 }
+
+@media (max-width:992px) {
+  .vehicle-container {
+    height: 74px;
+    width: 37px;
+  }
+}
